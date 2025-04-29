@@ -77,11 +77,13 @@ def create_pdf(input_file, output_pdf):
 
 # 実行
 if __name__ == "__main__":
-    desktop_dir = os.path.expanduser("~/Desktop")
-    filepath = filedialog.askopenfilename(filetypes = [("","*")],initialdir = desktop_dir)
+    desktop_dir = os.path.join(os.path.expanduser("~"), "Desktop")
+    inputPath = filedialog.askopenfilename(filetypes = [("","*")],initialdir = desktop_dir)
+    print("inputPath:", inputPath)
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_pdf = f"output_{timestamp}.pdf"
+    outputPath =os.path.join(os.path.dirname(inputPath), f"output_{timestamp}.pdf")
+    print("outputPath:", outputPath)
     
-    if filepath and output_pdf:
-        create_pdf(filepath, output_pdf)
+    if inputPath and outputPath:
+        create_pdf(inputPath, outputPath)

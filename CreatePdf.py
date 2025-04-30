@@ -14,11 +14,15 @@ def create_pdf(input_file, output_pdf):
     # 日本語フォントを登録
     platform = os.name
     if platform == "posix":
-        pdfmetrics.registerFont(TTFont("IPAexGothic", "/usr/share/fonts/OTF/ipag.ttf"))
+        pdfmetrics.registerFont(TTFont("userFont", "/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf"))
+    elif platform == "nt":
+        pdfmetrics.registerFont(TTFont("userFont", "C:\\Windows\\Fonts\\UDDigiKyokashoN-B.ttc"))
+        
+
 
     # Canvasオブジェクトを作成
     c = canvas.Canvas(output_pdf, pagesize=portrait(A4))
-    c.setFont("IPAexGothic", 12)  # 日本語フォントを設定
+    c.setFont("userFont", 12)  # 日本語フォントを設定
 
     xStartPosition = 50  # X座標の初期位置
     yStartPosition = 750 # Y座標の初期位置

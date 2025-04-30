@@ -1,1 +1,4 @@
 *.pdf
+*.spec
+dist/
+build/
